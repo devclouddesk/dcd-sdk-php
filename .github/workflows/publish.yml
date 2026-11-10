@@ -45,3 +45,4 @@ jobs:
             -d "{\"repository\":{\"url\":\"https://github.com/${{ github.repository }}\"}}" \
             -H "Content-Type: application/json"
           echo "Packagist notified successfully."
+

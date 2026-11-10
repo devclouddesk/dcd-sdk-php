@@ -31,12 +31,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Dcd\\Storage\\": "src/"
+      "Dcd\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Dcd\\Storage\\Tests\\": "tests/"
+      "Dcd\\Storage\\Tests\\": "tests/Storage/"
     }
   },
   "support": {
