@@ -1,0 +1,48 @@
+{
+  "name": "dcd-sdk/storage-client",
+  "description": "Official PHP client for DCD Storage Buckets, Asset Uploads, and Dynamic Image CDN",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "dcd",
+    "dcd-sdk",
+    "devclouddesk",
+    "storage",
+    "s3",
+    "cdn",
+    "image-transformation",
+    "cloud-storage",
+    "uploader"
+  ],
+  "authors": [
+    {
+      "name": "DevCloudDesk",
+      "email": "support@devclouddesk.com",
+      "homepage": "https://devclouddesk.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5 || ^10.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dcd\\Storage\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Dcd\\Storage\\Tests\\": "tests/"
+    }
+  },
+  "support": {
+    "issues": "https://github.com/devclouddesk/dcd-sdk-php/issues",
+    "source": "https://github.com/devclouddesk/dcd-sdk-php"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

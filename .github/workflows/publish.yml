@@ -1,0 +1,47 @@
+name: Publish to Packagist (dcd-sdk/storage-client)
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-and-publish:
+    name: Validate, Test & Notify Packagist
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: curl, json, mbstring
+          tools: composer
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run PHPUnit Test Suite
+        run: vendor/bin/phpunit --testdox
+
+      - name: Notify Packagist to re-index package
+        if: env.PACKAGIST_USERNAME != '' && env.PACKAGIST_API_TOKEN != ''
+        env:
+          PACKAGIST_USERNAME: ${{ secrets.PACKAGIST_USERNAME }}
+          PACKAGIST_API_TOKEN: ${{ secrets.PACKAGIST_API_TOKEN }}
+        run: |
+          echo "Notifying Packagist API..."
+          curl -s -X POST \
+            "https://packagist.org/api/update-package?username=${PACKAGIST_USERNAME}&apiToken=${PACKAGIST_API_TOKEN}" \
+            -d "{\"repository\":{\"url\":\"https://github.com/${{ github.repository }}\"}}" \
+            -H "Content-Type: application/json"
+          echo "Packagist notified successfully."
