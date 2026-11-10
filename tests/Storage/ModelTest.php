@@ -72,7 +72,7 @@ class ModelTest extends TestCase
         $this->assertFalse(isset($asset['custom']));
 
         // JsonSerializable
-        $json = json_encode($asset);
+        $json = json_encode($asset, JSON_UNESCAPED_SLASHES);
         $this->assertIsString($json);
         $this->assertStringContainsString('docs/sheet.xlsx', $json);
     }

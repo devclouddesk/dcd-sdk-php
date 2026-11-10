@@ -25,7 +25,7 @@ class TransformationBuilderTest extends TestCase
             ->build();
 
         $this->assertEquals(
-            'https://storage.devclouddesk.com/image/upload/w_400,h_300,c_fill,f_webp,q_85,e_blur_5,e_gray,e_sharp,a_90/avatars/user-1.webp',
+            'https://storage.devclouddesk.com/image/upload/w_400,h_300,c_fill,f_webp,q_85,e_blur_5,e_gray,e_sharp,r_90/avatars/user-1.webp',
             $url
         );
     }
@@ -84,7 +84,7 @@ class TransformationBuilderTest extends TestCase
         $this->assertStringContainsString('e_sharp', $b3->sharpen()->build());
 
         $b4 = new TransformationBuilder('https://storage.example.com', 'photo.jpg');
-        $this->assertStringContainsString('a_180', $b4->rotation(180)->build());
+        $this->assertStringContainsString('r_180', $b4->rotation(180)->build());
     }
 
     public function testToParamsString(): void
